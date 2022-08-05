@@ -128,7 +128,7 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (permissions.UpdateOwnProfile,)
     filter_backends = (filters.SearchFilter,)
-    search_fields = ('name', 'email',)
+    search_fields = ['name', 'email',]
 
 
 class UserLoginApiView(ObtainAuthToken):
@@ -143,6 +143,8 @@ class UserProfileFeedViewSet(viewsets.ModelViewSet):
     queryset = models.ProfileFeedItem.objects.all()
     permission_classes = (
         permissions.UpdateOwnStatus, IsAuthenticated)
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ['status_text']
 
     def perform_create(self, serializer):
         """Set the user profile to the logged in user"""
