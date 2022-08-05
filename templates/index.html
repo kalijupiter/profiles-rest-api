@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Home Page</h1>
+  <p>Welcome to Kali's Profiles REST API!</p>
+  <h2>Dynamic content</h2>
+  <p>The site has the following record counts:</p>
+  <ul>
+    <li><strong>Profiles:</strong> {{ num_profiles }}</li>
+    <li><strong>Feed Items:</strong> {{ num_feed_items }}</li>
+  </ul>
+{% endblock %}

@@ -12,6 +12,27 @@ from profiles_api import serializers
 from profiles_api import models
 from profiles_api import permissions
 
+from django.shortcuts import render
+
+# possible addition: adding count of current profiles and feed posts
+from .models import UserProfile, ProfileFeedItem
+
+def index(request):
+    """View function for home page of site."""
+
+    # Generate counts of some of the main objects
+    num_profiles = UserProfile.objects.all().count()
+    num_feed_items = ProfileFeedItem.objects.all().count()
+
+
+    context = {
+        'num_profiles': num_profiles,
+        'num_feed_items': num_feed_items,
+    }
+
+    # Render the HTML template index.html with the data in the context variable
+    return render(request, 'index.html', context=context)
+
 
 class HelloApiView(APIView):
     """Test API View"""
